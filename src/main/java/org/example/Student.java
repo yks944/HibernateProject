@@ -1,14 +1,18 @@
 package org.example;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "stud_table") //if  not added by default, creates with class name
 public class Student {
 
     @Id
     private int sRollNo;
+
+    @Column(name = "name")
     private String sName;
+
+    @Transient //this won't include in adding column
     private int sAge;
 
     public int getsRollNo() {
