@@ -26,14 +26,37 @@ public class Main {
         l2.setRam(16);
         l2.setBrand("Dell");
         l2.setModel("Xps");
+
+        Laptop l3 = new Laptop();
+        l3.setLid(3);
+        l3.setRam(16);
+        l3.setBrand("Mac");
+        l3.setModel("Air");
+
         Alien a1 = new Alien();
         a1.setAid(101);
         a1.setAname("Yash");
         a1.setTech("Java");
-        a1.setLaptops(Arrays.asList(l1,l2));
 
-        l1.setAlien(a1);
-        l2.setAlien(a1);
+        Alien a2 = new Alien();
+        a2.setAid(102);
+        a2.setAname("Kumar");
+        a2.setTech("Python");
+
+        Alien a3 = new Alien();
+        a3.setAid(103);
+        a3.setAname("Srivastava");
+        a3.setTech("C++");
+
+        a1.setLaptops(Arrays.asList(l1,l2));
+        a2.setLaptops(Arrays.asList(l2,l3));
+        a3.setLaptops(Arrays.asList(l1));
+
+
+        l1.setAliens(Arrays.asList(a1,a3));
+        l2.setAliens(Arrays.asList(a1,a2));
+        l3.setAliens(Arrays.asList(a2));
+
         //config for defining class to be treated as entity
         Configuration cfg = new Configuration();
         cfg.addAnnotatedClass(org.example.Alien.class).addAnnotatedClass(org.example.Laptop.class);
@@ -46,7 +69,10 @@ public class Main {
         Transaction trans = sess.beginTransaction();
         sess.persist(l1);
         sess.persist(l2);
+        sess.persist(l3);
         sess.persist(a1);
+        sess.persist(a2);
+        sess.persist(a3);
         trans.commit();
         //insert data
         //defining a trans

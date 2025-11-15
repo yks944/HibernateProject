@@ -2,6 +2,7 @@ package org.example;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class Alien {
     private String aname;
     private String tech;
 
-    @OneToMany(mappedBy = "alien") //alien is variable in laptop model.this specifies that laptop model will handle mapping.
+    @ManyToMany
     private List<Laptop> laptops;
     public int getAid() {
         return aid;
