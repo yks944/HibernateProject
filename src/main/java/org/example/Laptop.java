@@ -1,9 +1,12 @@
 package org.example;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
+@Entity
 public class Laptop {
+
+    @Id
+    private int lid;
     private String brand;
     private String model;
     private int ram;
@@ -32,10 +35,19 @@ public class Laptop {
         this.ram = ram;
     }
 
+    public int getLid() {
+        return lid;
+    }
+
+    public void setLid(int lid) {
+        this.lid = lid;
+    }
+
     @Override
     public String toString() {
         return "Laptop{" +
-                "brand='" + brand + '\'' +
+                "lid=" + lid +
+                ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", ram=" + ram +
                 '}';

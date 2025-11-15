@@ -14,6 +14,7 @@ public class Main {
 //        s1.setsRollNo(102);
 //        s1.setsAge(25);
         Laptop l1 = new Laptop();
+        l1.setLid(1);
         l1.setRam(16);
         l1.setBrand("Asus");
         l1.setModel("Rog");
@@ -24,7 +25,7 @@ public class Main {
         a1.setLaptop(l1);
         //config for defining class to be treated as entity
         Configuration cfg = new Configuration();
-        cfg.addAnnotatedClass(org.example.Alien.class);
+        cfg.addAnnotatedClass(org.example.Alien.class).addAnnotatedClass(org.example.Laptop.class);
         cfg.configure();
 
         //session to connect to db  per application
@@ -32,6 +33,7 @@ public class Main {
         Session sess = sf.openSession();
 
         Transaction trans = sess.beginTransaction();
+        sess.persist(l1);
         sess.persist(a1);
         trans.commit();
         //insert data
