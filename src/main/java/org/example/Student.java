@@ -3,7 +3,7 @@ package org.example;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "stud_table") //if  not added by default, creates with class name
+@Table(name = "stud_table") //if  not added, by default creates with class name
 public class Student {
 
     @Id
