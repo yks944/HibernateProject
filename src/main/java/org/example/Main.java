@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
     //Server=localhost;Database=master;Trusted_Connection=True;
@@ -18,11 +20,20 @@ public class Main {
         l1.setRam(16);
         l1.setBrand("Asus");
         l1.setModel("Rog");
+
+        Laptop l2 = new Laptop();
+        l2.setLid(2);
+        l2.setRam(16);
+        l2.setBrand("Dell");
+        l2.setModel("Xps");
         Alien a1 = new Alien();
         a1.setAid(101);
         a1.setAname("Yash");
         a1.setTech("Java");
-        a1.setLaptop(l1);
+        a1.setLaptops(Arrays.asList(l1,l2));
+
+        l1.setAlien(a1);
+        l2.setAlien(a1);
         //config for defining class to be treated as entity
         Configuration cfg = new Configuration();
         cfg.addAnnotatedClass(org.example.Alien.class).addAnnotatedClass(org.example.Laptop.class);
@@ -34,6 +45,7 @@ public class Main {
 
         Transaction trans = sess.beginTransaction();
         sess.persist(l1);
+        sess.persist(l2);
         sess.persist(a1);
         trans.commit();
         //insert data
