@@ -1,12 +1,10 @@
 package org.example;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
+@Cacheable
 public class Laptop {
 
     @Id

@@ -19,18 +19,20 @@ public class Main {
         cfg.configure();
 
         //session to connect to db  per application
+        //we have created two session but will hit db once, as we have enabled cache
         SessionFactory sf = cfg.buildSessionFactory();
         Session sess = sf.openSession();
-        String brand = "Lenovo";
-        Query query = sess.createQuery("select brand, model from Laptop where brand like ?1");
-        query.setParameter(1,brand);
-        List<Object[]>laptops = query.getResultList();
-       // Laptop lap = sess.find(Laptop.class,3);
-        for(Object[] data: laptops)
-        {
-            System.out.println((String)data[0]+" "+data[1]);
-        }
+
+        Laptop laptop = sess.find(Laptop.class,2);
+
+        System.out.println(laptop);
         sess.close();
+        Session sess2 = sf.openSession();
+        Laptop laptop2 = sess2.find(Laptop.class,2);
+
+        System.out.println(laptop2);
+        sess2.close();
+
         sf.close();
         }
     }
